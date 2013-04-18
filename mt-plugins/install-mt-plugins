@@ -1,0 +1,23 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]
+then
+  echo "usage: ./install-mt-plugins /PATH/TO/MT_DIR"
+  exit
+fi
+
+var_pwd=`pwd`
+var_mt_path=`echo $1 | sed -e "s/\/$//"`
+var_mt_p_path=${var_mt_path}/plugins
+var_mt_s_path=`grep -E 'StaticFilePath' ${var_mt_path}/mt-config.cgi | sed -e "s/^StaticFilePath\s*//"`
+var_mt_s_path=`echo ${var_mt_s_path} | sed -e "s/\/$//"`
+
+# install plugins
+cd ${var_mt_p_path}
+ln -sf ${var_pwd}/plugins/* ./
+
+# install mt-static/plugins
+cd ${var_mt_s_path}/plugins
+ln -sf ${var_pwd}/mt-static/plugins/* ./
+
+exit
