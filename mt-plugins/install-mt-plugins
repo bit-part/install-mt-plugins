@@ -14,10 +14,18 @@ var_mt_s_path=`echo ${var_mt_s_path} | sed -e "s/\/$//"`
 
 # install plugins
 cd ${var_mt_p_path}
-ln -sf ${var_pwd}/plugins/* ./
+var_count_p_dir=`ls -l | grep ^d | wc -l`
+if [ ${var_count_p_dir} -gt 0 ]
+then
+  ln -sf ${var_pwd}/plugins/* ./
+fi
 
 # install mt-static/plugins
 cd ${var_mt_s_path}/plugins
-ln -sf ${var_pwd}/mt-static/plugins/* ./
+var_count_s_dir=`ls -l | grep ^d | wc -l`
+if [ ${var_count_s_dir} -gt 0 ]
+then
+  ln -sf ${var_pwd}/mt-static/plugins/* ./
+fi
 
 exit
