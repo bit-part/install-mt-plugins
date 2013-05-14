@@ -12,6 +12,7 @@ Example tree
     │   └── plugins
     │   └── ...
     └── mt-plugins <= Your plugins Directories
+        ├── install-mt-plugins <= script
         ├── mt-static
         │   └── plugins
         │       ├── MTAppjQuery
